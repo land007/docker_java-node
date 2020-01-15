@@ -34,14 +34,17 @@ RUN ln -s $HOME/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/lib/node_modules /nod
 WORKDIR /node
 VOLUME ["/node"]
 
-RUN echo $(date "+%Y-%m-%d_%H:%M:%S") >> /.image_times && \
+RUN  echo $(date "+%Y-%m-%d_%H:%M:%S") >> /.image_times && \
 	echo $(date "+%Y-%m-%d_%H:%M:%S") > /.image_time && \
 	echo "land007/java-node" >> /.image_names && \
-	echo "land007/java-node" > /.image_name
+	echo "land007/java-node" > /.image_name && \
+	echo "/check.sh /node" >> /start.sh && \
+	echo "chmod +x /node/*.sh" >> /start.sh && \
+	echo "/node/start.sh" >> /start.sh
 
-CMD /check.sh /java ; /check.sh /node ; /usr/sbin/sshd ; /start.sh ; bash
+EXPOSE 80/tcp
+CMD /start.sh ; bash
 
-#EXPOSE 80/tcp
 #CMD /check.sh /node; /etc/init.d/ssh start; /node/start.sh
 #RUN echo "/check.sh /node" >> /start.sh && \
 
