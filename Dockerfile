@@ -38,12 +38,12 @@ RUN  echo $(date "+%Y-%m-%d_%H:%M:%S") >> /.image_times && \
 	echo $(date "+%Y-%m-%d_%H:%M:%S") > /.image_time && \
 	echo "land007/java-node" >> /.image_names && \
 	echo "land007/java-node" > /.image_name && \
-	echo "/check.sh /node" >> /start.sh && \
-	echo "chmod +x /node/*.sh" >> /start.sh && \
+	echo "/check.sh /node" >> /task.sh && \
+	echo "chmod +x /node/*.sh" >> /task.sh && \
 	echo "/node/start.sh" >> /start.sh
 
 EXPOSE 80/tcp
-CMD /start.sh ; bash
+CMD /task.sh ; /start.sh ; bash
 
 #CMD /check.sh /node; /etc/init.d/ssh start; /node/start.sh
 #RUN echo "/check.sh /node" >> /start.sh && \
