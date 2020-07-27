@@ -48,4 +48,5 @@ CMD /task.sh ; /start.sh ; bash
 #CMD /check.sh /node; /etc/init.d/ssh start; /node/start.sh
 #RUN echo "/check.sh /node" >> /start.sh && \
 
-#docker stop java ; docker rm java ; docker run -it --privileged --name java land007/java:latest
+#docker build -t land007/java-node:latest .
+#docker stop java-node ; docker rm java-node ; docker run -it --privileged --name java land007/java-node:latest
